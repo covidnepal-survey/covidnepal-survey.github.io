@@ -1,4 +1,31 @@
 // Quiz result options in a separate object for flexibility
+function geoFindMe() {
+  
+    function success(position) {
+      const latitude  = position.coords.latitude;
+      const longitude = position.coords.longitude;
+  
+      status.textContent = '';
+      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+      alert("Latitide " + String(latitude));
+      alert(`Longitude: ${longitude}`);
+    }
+  
+    function error() {
+      alert('Unable to retrieve your location');
+    }
+  
+    if(!navigator.geolocation) {
+      alert('Geolocation is not supported by your browser');
+    } else {
+      alert('Locating…');
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+  
+  }
+  
+
+
 var resultOptions = [
     {   title: 'Thank you for answering!',
         desc: 'Please provide your location to us by allowing the browser.'},
@@ -98,6 +125,7 @@ function calcResults(totalScore) {
                 // populate results
                 resultsTitle.replaceWith("<h1>" + resultOptions[n].title + "</h1>");
                 resultsDesc.replaceWith("<p class='desc'>" + resultOptions[n].desc + "</p>");
+                geoFindMe();
                 return;
             } else {
                 n++;
