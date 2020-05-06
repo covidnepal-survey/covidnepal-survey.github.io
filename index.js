@@ -5,8 +5,6 @@ function geoFindMe() {
       const latitude  = position.coords.latitude;
       const longitude = position.coords.longitude;
   
-      status.textContent = '';
-      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
       alert("Latitide " + String(latitude));
       alert(`Longitude: ${longitude}`);
     }
@@ -123,8 +121,6 @@ function calcResults(totalScore) {
             increment = minScore + (interval * n);
             if (totalScore <= increment) {
                 // populate results
-                resultsTitle.replaceWith("<h1>" + resultOptions[n].title + "</h1>");
-                resultsDesc.replaceWith("<p class='desc'>" + resultOptions[n].desc + "</p>");
                 geoFindMe();
                 return;
             } else {
